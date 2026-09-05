@@ -224,7 +224,7 @@ jobs:
 
   automated-defect-checks:
     name: "Automated defect checks"
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request')
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: "Fetch source code"
