@@ -53,7 +53,7 @@ permissions:
 env:
   # The one variable that separates the arms: on baseline, action-checkout
   # skips its Set up Chalk step entirely.
-  CHALK_ON: ${{ github.event_name == 'workflow_dispatch' && inputs.leg != 'baseline' }}
+  CHALK_ON: ${{ inputs.leg == 'instrumented' }}
 
 run-name: "Quick Checks ${{ inputs.leg || 'push' }} ${{ inputs.racecar_run }}"
 
@@ -224,7 +224,7 @@ jobs:
 
   automated-defect-checks:
     name: "Automated defect checks"
-    if: github.event_name == 'pull_request'
+    if: ${{ 'push' == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: "Fetch source code"
